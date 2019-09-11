@@ -2,7 +2,13 @@ project(FAIRSOFT)
 
 cmake_minimum_required(VERSION 3.0)
 
-enable_testing()
+#enable_testing()
+
+if (IS_DIRECTORY ${CMAKE_SOURCE_DIR}/spack)
+  execute_process(COMMAND git pull origin WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/spack)
+else (IS_DIRECTORY ${CMAKE_SOURCE_DIR}/spack)
+  execute_process(COMMAND git clone https://github.com/FairRootGroup/spack.git ${CMAKE_SOURCE_DIR}/spack)
+endif (IS_DIRECTORY ${CMAKE_SOURCE_DIR}/spack)
 
 set(SPACK_DIR $ENV{SPACK_DIR})
 set(FAIRROOT_VERSION $ENV{FAIRROOT_VERSION})
